@@ -12,7 +12,7 @@ def relayON():
 def relayOFF():
  requests.get('http://192.168.1.32/RelayOff')
  
-def relay2sec():
+while True():
  relayON();
  time.sleep(2)
  relayOFF();
@@ -22,12 +22,4 @@ def relay2sec():
  time.sleep(2)
  relayOFF();
 
-def led2sec():
- ledON();
- time.sleep(.2)
- ledOFF();
- time.sleep(.2)
- ledON();
- time.sleep(.2)
- time.sleep(.2)
- ledOFF();
+
