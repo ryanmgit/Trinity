@@ -24,10 +24,10 @@ def relay2sec():
 
 def led2sec():
  ledON();
- time.sleep(2)
+ time.sleep(.2)
  ledOFF();
- time.sleep(2)
+ time.sleep(.2)
  ledON();
- time.sleep(2)
- time.sleep(2)
+ time.sleep(.2)
+ time.sleep(.2)
  ledOFF();
