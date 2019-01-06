@@ -6,7 +6,7 @@ def ledON():
 def ledOff():
  requests.get('http://192.168.1.32/L')
  
- while True():
+while True:
    ledON();
    time.sleep(2)
    ledOFF();

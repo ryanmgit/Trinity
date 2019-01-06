@@ -25,8 +25,10 @@ WiFiServer server(80);
 void setup()
 {
   Serial.begin(115200);
-  pinMode(5, OUTPUT);// set the LED pin mode
-  pinMode(14, OUTPUT);// set the Relay pin mode
+  pinMode(5, OUTPUT);// set the pin mode
+  pinMode(14, OUTPUT);// set the pin mode
+  pinMode(16, OUTPUT);// set the pin mode
+  pinMode(17, OUTPUT);// set the pin mode
   digitalWrite(14, HIGH);// turn off relay
 
   delay(10);
@@ -42,7 +44,7 @@ void setup()
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print("wtf");
+    Serial.print("tf");
   }
 
   Serial.println("");
@@ -78,10 +80,14 @@ void loop() {
             client.println();
 
             // the content of the HTTP response follows the header:
-            client.print("Click <a href=\"/H\">here</a> to turn the LED on pin 5 on.<br>");
-            client.print("Click <a href=\"/L\">here</a> to turn the LED on pin 5 off.<br>");
-            client.print("Click <a href=\"/RelayOn\">here</a> to turn the Relay on pin 14 on.<br>");
-            client.print("Click <a href=\"/RelayOff\">here</a> to turn the Relay on pin 14 off.<br>");
+            client.print("Click <a href=\"/5on\">here</a> to turn pin 5 on.<br>");
+            client.print("Click <a href=\"/5off\">here</a> to turn pin 5 off.<br>");
+            client.print("Click <a href=\"/14on\">here</a> to turn pin 14 on.<br>");
+            client.print("Click <a href=\"/14off\">here</a> to turn pin 14 off.<br>");
+            client.print("Click <a href=\"/16on\">here</a> to turn pin 16 on.<br>");
+            client.print("Click <a href=\"/16off\">here</a> to turn pin 16 off.<br>");
+            client.print("Click <a href=\"/17on\">here</a> to turn pin 17 on.<br>");
+            client.print("Click <a href=\"/17off\">here</a> to turn pin 17 off.<br>");
 
 
             // The HTTP response ends with another blank line:
@@ -96,17 +102,29 @@ void loop() {
         }
 
         // Check to see if the client request was to alter LED or relay state:
-        if (currentLine.endsWith("GET /H")) {
-          digitalWrite(5, HIGH);               // GET /H turns the LED on
+        if (currentLine.endsWith("GET /5on")) {
+          digitalWrite(5, LOW);               // GET /5on turns the pin 5 on
         }
-        if (currentLine.endsWith("GET /L")) {
-          digitalWrite(5, LOW);                // GET /L turns the LED off
+        if (currentLine.endsWith("GET /5off")) {
+          digitalWrite(5, HIGH);                // GET /5off turns pin 5 off
         }
-        if (currentLine.endsWith("GET /RelayOn")) {
-          digitalWrite(14, LOW);               // GET /RelayOn turns the relay on
+        if (currentLine.endsWith("GET /14on")) {
+          digitalWrite(14, LOW);               // GET /14on turns pin 14 on
         }
-        if (currentLine.endsWith("GET /RelayOff")) {
-          digitalWrite(14, HIGH);                // GET /RelayOff turns the relay off
+        if (currentLine.endsWith("GET /14off")) {
+          digitalWrite(14, HIGH);                // GET /14off turns pin 14 off
+        }
+        if (currentLine.endsWith("GET /16on")) {
+          digitalWrite(16, LOW);               // GET /16on turns pin 16 on
+        }
+        if (currentLine.endsWith("GET /16off")) {
+          digitalWrite(16, HIGH);                // GET /16off turns pin 16 off
+        }
+        if (currentLine.endsWith("GET /17on")) {
+          digitalWrite(17, LOW);               // GET /17on turns pin 17 on
+        }
+        if (currentLine.endsWith("GET /17off")) {
+          digitalWrite(17, HIGH);                // GET /17off turns pin 17 off
         }
       }
     }
